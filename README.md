@@ -1,1 +1,1 @@
-"# yosypchuk-bohdan" 
+# yosypchuk-bohdan
