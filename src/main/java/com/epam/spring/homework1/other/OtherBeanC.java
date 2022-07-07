@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class OtherBeanC {
     @Autowired
-    BeanC beanC;
+    private BeanC beanC;
 
-    OtherBeanC(){
+    public OtherBeanC(){
         System.out.println(beanC);
     }
 }

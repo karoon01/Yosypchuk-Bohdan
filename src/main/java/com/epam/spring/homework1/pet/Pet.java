@@ -10,11 +10,11 @@ public class Pet {
     @Autowired
     private List<Animal> animals;
 
-    public Pet(List<Animal> animals){
+    public Pet(List<Animal> animals) {
         this.animals = animals;
     }
 
-    public void printPets(){
+    public void printPets() {
         for (Animal animal : animals) {
             System.out.println(animal);
         }

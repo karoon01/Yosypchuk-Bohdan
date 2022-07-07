@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Order(Ordered.LOWEST_PRECEDENCE)
-public class Cheetah implements Animal{
+public class Cheetah implements Animal {
     public Cheetah() {
     }
 
