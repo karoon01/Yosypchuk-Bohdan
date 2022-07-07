@@ -30,7 +30,7 @@ public abstract class Bean implements Validator {
     }
 
     @Override
-    public boolean validate(){
+    public boolean validate() {
         return this.name != null && this.value > 0;
     }
 

@@ -13,38 +13,38 @@ public class FirstConfig {
 
     @Bean
     @DependsOn("beanC")
-    public BeanA beanA(){
+    public BeanA beanA() {
         return new BeanA();
     }
 
     @Bean(initMethod = "customInitMethod", destroyMethod = "customDestroyMethod")
     @DependsOn("beanD")
     public BeanB beanB(@Value("${beanB.name}") String name,
-                       @Value("${beanB.value}") Double value){
+                       @Value("${beanB.value}") Double value) {
         return new BeanB(name, value);
     }
 
     @Bean(initMethod = "customInitMethod", destroyMethod = "customDestroyMethod")
     @DependsOn("beanB")
     public BeanC beanC(@Value("${beanC.name}") String name,
-                       @Value("${beanC.value}") Double value){
+                       @Value("${beanC.value}") Double value) {
         return new BeanC(name, value);
     }
 
     @Bean(initMethod = "customInitMethod", destroyMethod = "customDestroyMethod")
     public BeanD beanD(@Value("${beanD.name}") String name,
-                       @Value("${beanD.value}") Double value){
+                       @Value("${beanD.value}") Double value) {
         return new BeanD(name, value);
     }
 
     @Bean
-    public BeanE beanE(){
+    public BeanE beanE() {
         return new BeanE();
     }
 
     @Bean
     @Lazy
-    public BeanF beanF(){
+    public BeanF beanF() {
         return new BeanF();
     }
 

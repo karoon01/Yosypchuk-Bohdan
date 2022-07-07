@@ -6,11 +6,11 @@ public class BeanC extends Bean{
         super(name, value);
     }
 
-    public void customInitMethod(){
+    public void customInitMethod() {
         System.out.println(this.getClass().getSimpleName() + " custom init method");
     }
 
-    public void customDestroyMethod(){
+    public void customDestroyMethod() {
         System.out.println(this.getClass().getSimpleName() + " custom destroy method");
     }
 
