@@ -9,7 +9,7 @@ public class OtherBeanC {
     @Autowired
     private BeanC beanC;
 
-    public OtherBeanC(){
+    public OtherBeanC() {
         System.out.println(beanC);
     }
 }
