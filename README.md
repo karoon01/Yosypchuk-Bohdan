@@ -1,2 +1,0 @@
-"#" 
-"# Yosypchuk-Bohdan" 
