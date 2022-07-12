@@ -18,6 +18,7 @@ public abstract class Bean implements Validator {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -25,6 +26,7 @@ public abstract class Bean implements Validator {
     public Double getValue() {
         return value;
     }
+
     public void setValue(Double value) {
         this.value = value;
     }

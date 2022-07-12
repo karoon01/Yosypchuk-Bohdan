@@ -1,6 +1,6 @@
 package com.epam.spring.homework2.beans;
 
-public class BeanD extends Bean{
+public class BeanD extends Bean {
 
     public BeanD(String name, Double value) {
         super(name, value);

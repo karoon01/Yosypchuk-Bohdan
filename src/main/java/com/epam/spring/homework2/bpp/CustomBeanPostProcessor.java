@@ -16,14 +16,14 @@ public class CustomBeanPostProcessor implements BeanPostProcessor {
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         String message;
 
-        if(bean instanceof Bean) {
+        if (bean instanceof Bean) {
             boolean isValid = ((Bean) bean).validate();
 
-            if(!isValid) {
+            if (!isValid) {
                 message = "+ Bean is not valid";
                 ((Bean) bean).setName("Default name");
                 ((Bean) bean).setValue(1.0);
-            }else {
+            } else {
                 message = "+ Bean is valid";
             }
             System.out.println(message);

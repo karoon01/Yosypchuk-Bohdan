@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 @ComponentScan("com.epam.spring.homework2.beans")
 @PropertySource("classpath:application.properties")
 @Import(SecondConfig.class)
+
 public class FirstConfig {
 
     @Bean
