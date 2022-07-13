@@ -4,7 +4,6 @@ import com.epam.spring.homework3.api.RequestApi;
 import com.epam.spring.homework3.model.DTO.RequestDTO;
 import com.epam.spring.homework3.service.RequestService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

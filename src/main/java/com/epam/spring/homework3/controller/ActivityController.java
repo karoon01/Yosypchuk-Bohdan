@@ -3,11 +3,11 @@ package com.epam.spring.homework3.controller;
 import com.epam.spring.homework3.api.ActivityApi;
 import com.epam.spring.homework3.model.DTO.ActivityDTO;
 import com.epam.spring.homework3.service.ActivityService;
-import com.epam.spring.homework3.service.UserActivityTimeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -27,12 +27,12 @@ public class ActivityController implements ActivityApi {
     }
 
     @Override
-    public ActivityDTO createActivity(@RequestBody ActivityDTO activityDTO) {
+    public ActivityDTO createActivity(@Valid @RequestBody ActivityDTO activityDTO) {
         return activityService.createActivity(activityDTO);
     }
 
     @Override
-    public ActivityDTO updateActivity(@PathVariable Long id, @RequestBody ActivityDTO activityDTO) {
+    public ActivityDTO updateActivity(@PathVariable Long id, @Valid @RequestBody ActivityDTO activityDTO) {
         return activityService.updateActivity(id, activityDTO);
     }
 

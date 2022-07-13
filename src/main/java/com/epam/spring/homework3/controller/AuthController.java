@@ -8,12 +8,13 @@ import com.epam.spring.homework3.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Slf4j
 @AllArgsConstructor
@@ -25,12 +26,12 @@ public class AuthController implements AuthApi {
     private final AuthenticationManager authenticationManager;
 
     @Override
-    public UserDTO register(@RequestBody UserDTO userDTO) {
+    public UserDTO register(@Valid @RequestBody UserDTO userDTO) {
         return userService.registerUser(userDTO);
     }
 
     @Override
-    public ResponseEntity<UserDTO> login(@RequestBody LoginRequestDTO request) {
+    public ResponseEntity<UserDTO> login(@Valid @RequestBody LoginRequestDTO request) {
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword());
         Authentication authentication = authenticationManager.authenticate(authenticationToken);
 

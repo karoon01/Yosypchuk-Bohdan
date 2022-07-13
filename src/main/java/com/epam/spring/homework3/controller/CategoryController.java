@@ -4,10 +4,10 @@ import com.epam.spring.homework3.api.CategoryApi;
 import com.epam.spring.homework3.model.DTO.CategoryDTO;
 import com.epam.spring.homework3.service.CategoryService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -27,7 +27,7 @@ public class CategoryController implements CategoryApi {
     }
 
     @Override
-    public CategoryDTO createCategory(@RequestBody CategoryDTO categoryDTO) {
+    public CategoryDTO createCategory(@Valid @RequestBody CategoryDTO categoryDTO) {
         return categoryService.createCategory(categoryDTO);
     }
 

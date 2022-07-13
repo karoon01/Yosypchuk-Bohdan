@@ -7,10 +7,10 @@ import com.epam.spring.homework3.model.entity.UserActivityTime;
 import com.epam.spring.homework3.service.UserActivityTimeService;
 import com.epam.spring.homework3.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -30,7 +30,7 @@ public class UserController implements UserApi {
     }
 
     @Override
-    public UserDTO updateUser(@PathVariable String id, @RequestBody UserDTO userDTO) {
+    public UserDTO updateUser(@PathVariable String id, @Valid @RequestBody UserDTO userDTO) {
         return userService.updateUser(id, userDTO);
     }
 
@@ -41,7 +41,7 @@ public class UserController implements UserApi {
     }
 
     @Override
-    public UserActivityTime markTime(@PathVariable Long userId, @PathVariable Long activityId, @RequestBody UserActivityTimeDTO timeDTO) {
+    public UserActivityTime markTime(@PathVariable Long userId, @PathVariable Long activityId, @Valid @RequestBody UserActivityTimeDTO timeDTO) {
         UserActivityTime time = timeService.markTime(userId, activityId, timeDTO);
         return time;
     }
