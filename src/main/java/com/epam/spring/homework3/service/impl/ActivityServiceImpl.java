@@ -69,9 +69,4 @@ public class ActivityServiceImpl implements ActivityService {
                 .map(ActivityMapper.INSTANCE::mapActivityDto)
                 .collect(Collectors.toList());
     }
-
-    @Override
-    public List<UserDTO> getAllActivityUsers(Long activityId) {
-        return null;
-    }
 }

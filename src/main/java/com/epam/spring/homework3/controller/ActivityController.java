@@ -27,7 +27,7 @@ public class ActivityController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/activity/all")
-    public List<ActivityDTO> getActivity() {
+    public List<ActivityDTO> getAllActivities() {
         return activityService.getAllActivities();
     }
 
@@ -38,7 +38,7 @@ public class ActivityController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/admin/activity")
+    @PutMapping("admin/activity")
     public ActivityDTO updateActivity(@PathVariable Long id, @RequestBody ActivityDTO activityDTO) {
         return activityService.updateActivity(id, activityDTO);
     }

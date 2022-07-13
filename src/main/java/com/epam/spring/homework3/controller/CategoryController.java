@@ -29,7 +29,7 @@ public class CategoryController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/admin/activity/category")
-    public CategoryDTO getAllActivityCategories(@RequestBody CategoryDTO categoryDTO) {
+    public CategoryDTO createCategory(@RequestBody CategoryDTO categoryDTO) {
         return categoryService.createCategory(categoryDTO);
     }
 

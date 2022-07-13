@@ -15,7 +15,4 @@ public interface ActivityService {
     void deleteActivity(Long id);
 
     List<ActivityDTO> getAllActivities();
-
-    List<UserDTO> getAllActivityUsers(Long activityId);
-
 }
