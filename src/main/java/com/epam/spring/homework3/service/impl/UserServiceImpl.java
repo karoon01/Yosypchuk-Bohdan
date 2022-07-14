@@ -68,9 +68,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO updateUser(String id, UserDTO userDTO) {
         log.info("Update user by id: {}", id);
-        User user = UserMapper.INSTANCE.mapUser(userDTO);
-        userRepository.save(user);
-        return userDTO;
+       User user = userRepository.findById(id)
+                        .orElseThrow(() -> new EntityNotFoundException("User doesn't exist"));
+
+        User updatedUser = User.builder()
+                .id(id)
+                .firstName(userDTO.getFirstName())
+                .lastName(userDTO.getLastName())
+                .email(userDTO.getEmail())
+                .password(userDTO.getPassword())
+                .role(user.getRole())
+                .build();
+
+        userRepository.save(updatedUser);
+
+        return UserMapper.INSTANCE.mapUserDto(updatedUser);
     }
 
     @Transactional
