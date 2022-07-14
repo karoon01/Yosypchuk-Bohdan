@@ -30,7 +30,7 @@ public class UserController implements UserApi {
     }
 
     @Override
-    public UserDTO updateUser(@PathVariable String id, @Valid @RequestBody UserDTO userDTO) {
+    public UserDTO updateUser(@PathVariable Long id, @Valid @RequestBody UserDTO userDTO) {
         return userService.updateUser(id, userDTO);
     }
 

@@ -34,7 +34,7 @@ public interface UserApi {
     @ApiOperation("Update user")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id}")
-    UserDTO updateUser(@PathVariable String id, @RequestBody UserDTO userDTO);
+    UserDTO updateUser(@PathVariable Long id, @RequestBody UserDTO userDTO);
 
     @ApiOperation("Delete user")
     @ResponseStatus(HttpStatus.OK)

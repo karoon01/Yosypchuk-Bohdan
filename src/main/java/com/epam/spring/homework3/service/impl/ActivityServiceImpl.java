@@ -46,6 +46,7 @@ public class ActivityServiceImpl implements ActivityService {
     public ActivityDTO updateActivity(Long id, ActivityDTO activityDTO) {
         log.info("Update activity with id: {}", id);
         Activity activity = ActivityMapper.INSTANCE.mapActivity(activityDTO);
+        activity.setId(id);
         activityRepository.save(activity);
 
         return ActivityMapper.INSTANCE.mapActivityDto(activity);
