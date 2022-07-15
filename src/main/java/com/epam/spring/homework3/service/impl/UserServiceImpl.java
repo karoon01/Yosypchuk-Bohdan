@@ -76,7 +76,7 @@ public class UserServiceImpl implements UserService {
                 .firstName(userDTO.getFirstName())
                 .lastName(userDTO.getLastName())
                 .email(userDTO.getEmail())
-                .password(userDTO.getPassword())
+                .password(passwordEncoder.encode(userDTO.getPassword()))
                 .role(user.getRole())
                 .build();
 
