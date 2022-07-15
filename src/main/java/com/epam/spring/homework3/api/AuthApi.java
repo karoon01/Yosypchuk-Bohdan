@@ -8,10 +8,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 
 @Api("Authentication and authorization management API")
 @RequestMapping("/api/v1/auth")
@@ -23,11 +20,11 @@ public interface AuthApi {
 
     @ApiOperation("Register user")
     @ResponseStatus(HttpStatus.CREATED)
-    @GetMapping("/register")
+    @PostMapping("/register")
     UserDTO register(@RequestBody UserDTO userDTO);
 
     @ApiOperation("Sign in user")
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/login")
+    @PostMapping("/login")
     ResponseEntity<UserDTO> login(@RequestBody LoginRequestDTO request);
 }

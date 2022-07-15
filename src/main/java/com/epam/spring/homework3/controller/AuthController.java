@@ -19,7 +19,6 @@ import javax.validation.Valid;
 @Slf4j
 @AllArgsConstructor
 @RestController
-@RequestMapping("/auth")
 public class AuthController implements AuthApi {
 
     private final UserService userService;

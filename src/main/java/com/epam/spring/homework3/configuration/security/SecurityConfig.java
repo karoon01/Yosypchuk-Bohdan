@@ -72,7 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/actuator/**").permitAll()
                 .antMatchers("/v3/api-docs", "/swagger-ui.html", "/swagger-ui/api-docs/swagger-config", "/swagger-ui/**").permitAll()
-                .antMatchers("/auth/**", "/activity/**").permitAll()
+                .antMatchers("/api/v1/auth/**").permitAll()
                 .antMatchers(USER_PATHS).hasAuthority("USER")
                 .antMatchers(ADMIN_PATHS).hasAuthority("ADMIN")
                 .anyRequest().authenticated();
