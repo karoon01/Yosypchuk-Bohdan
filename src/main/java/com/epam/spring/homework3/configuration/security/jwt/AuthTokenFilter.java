@@ -20,7 +20,6 @@ import java.io.IOException;
 public class AuthTokenFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String authorization = request.getHeader(HttpHeaders.AUTHORIZATION);
-        log.info("Authorization: {}", authorization);
 
         if (authorization.isBlank() || !authorization.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
