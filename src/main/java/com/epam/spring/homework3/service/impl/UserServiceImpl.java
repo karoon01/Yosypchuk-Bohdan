@@ -10,6 +10,8 @@ import com.epam.spring.homework3.repository.UserRepository;
 import com.epam.spring.homework3.mapper.UserMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -97,7 +99,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDTO> getAllUsers() {
         log.info("Get all users");
-        return userRepository.findAll()
+        return userRepository.findAll(PageRequest.of(1, 5))
                 .stream()
                 .map(UserMapper.INSTANCE::mapUserDto)
                 .collect(Collectors.toList());

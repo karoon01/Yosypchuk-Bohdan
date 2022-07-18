@@ -16,6 +16,7 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
     List<Request> getAllRequestsByUserId(Long userId);
 
     @Modifying
-    @Query("UPDATE Request r SET r.status = ?1 WHERE r.id = ?2")
+    @Query(value ="UPDATE Request r SET r.status = ? WHERE r.id = ?",
+    nativeQuery = true)
     void updateRequestStatusById(Status status, Long id);
 }

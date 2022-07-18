@@ -11,6 +11,7 @@ import com.epam.spring.homework3.model.entity.Activity;
 import com.epam.spring.homework3.repository.ActivityRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -65,7 +66,7 @@ public class ActivityServiceImpl implements ActivityService {
     @Override
     public List<ActivityDTO> getAllActivities() {
         log.info("Get all activities");
-        return activityRepository.findAll()
+        return activityRepository.findAll(Sort.by(Sort.Direction.ASC, "name"))
                 .stream()
                 .map(ActivityMapper.INSTANCE::mapActivityDto)
                 .collect(Collectors.toList());
