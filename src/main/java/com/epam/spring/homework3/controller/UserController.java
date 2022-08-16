@@ -42,7 +42,6 @@ public class UserController implements UserApi {
 
     @Override
     public UserActivityTime markTime(@PathVariable Long userId, @PathVariable Long activityId, @Valid @RequestBody UserActivityTimeDTO timeDTO) {
-        UserActivityTime time = timeService.markTime(userId, activityId, timeDTO);
-        return time;
+        return timeService.markTime(userId, activityId, timeDTO);
     }
 }

@@ -1,5 +1,6 @@
 package com.epam.spring.homework3.service.impl;
 
+import com.epam.spring.homework3.exception.EntityAlreadyExistException;
 import com.epam.spring.homework3.model.DTO.CategoryDTO;
 import com.epam.spring.homework3.exception.EntityNotFoundException;
 import com.epam.spring.homework3.model.entity.Category;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -23,11 +25,19 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryDTO createCategory(CategoryDTO categoryDTO) {
-        log.info("Create category: {}", categoryDTO);
+        String name = categoryDTO.getName();
+        Optional<Category> possibleCategory = categoryRepository.findCategoryByName(name);
+
+        if(possibleCategory.isPresent()) {
+            log.warn("Category with name: \"{}\" already exist!", name);
+            throw new EntityAlreadyExistException("Activity category is already exist!");
+        }
+
+        log.info("Create category with name: {}", name);
         Category category = CategoryMapper.INSTANCE.mapCategory(categoryDTO);
         categoryRepository.save(category);
 
-        return CategoryMapper.INSTANCE.mapCategoryDto(category);
+        return categoryDTO;
     }
 
     @Override

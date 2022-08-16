@@ -38,7 +38,7 @@ public interface ActivityApi {
 
     @ApiOperation("Update activity")
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping()
+    @PutMapping("/{id}")
     ActivityDTO updateActivity(@PathVariable Long id, @RequestBody ActivityDTO activityDTO);
 
     @ApiOperation("Delete activity")
