@@ -6,6 +6,7 @@ import com.epam.spring.homework3.model.DTO.LoginRequestDTO;
 import com.epam.spring.homework3.model.DTO.UserDTO;
 import com.epam.spring.homework3.service.UserService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @Slf4j
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RestController
 public class AuthController implements AuthApi {
 

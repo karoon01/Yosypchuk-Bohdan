@@ -7,13 +7,14 @@ import java.time.Duration;
 
 @Data
 @Builder
-@NoArgsConstructor @AllArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "user_activity_time")
 public class UserActivityTime {
 
     @EmbeddedId
-    UserActivityTimeKey id;
+    private UserActivityTimeKey id;
 
     @ManyToOne
     @MapsId("userId")

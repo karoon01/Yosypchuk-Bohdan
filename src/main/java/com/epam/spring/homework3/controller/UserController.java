@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@RestController
 @RequiredArgsConstructor
+@RestController
 public class UserController implements UserApi {
     private final UserService userService;
     private final UserActivityTimeService timeService;
@@ -42,7 +42,6 @@ public class UserController implements UserApi {
 
     @Override
     public UserActivityTime markTime(@PathVariable Long userId, @PathVariable Long activityId, @Valid @RequestBody UserActivityTimeDTO timeDTO) {
-        UserActivityTime time = timeService.markTime(userId, activityId, timeDTO);
-        return time;
+        return timeService.markTime(userId, activityId, timeDTO);
     }
 }

@@ -10,7 +10,7 @@ import com.epam.spring.homework3.repository.ActivityRepository;
 import com.epam.spring.homework3.repository.TimeRepository;
 import com.epam.spring.homework3.repository.UserRepository;
 import com.epam.spring.homework3.service.UserActivityTimeService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,8 +19,8 @@ import java.time.Duration;
 import java.time.LocalTime;
 
 @Slf4j
+@RequiredArgsConstructor
 @Service
-@AllArgsConstructor
 public class UserActivityTimeServiceImpl implements UserActivityTimeService {
 
     private final TimeRepository timeRepository;
@@ -50,7 +50,7 @@ public class UserActivityTimeServiceImpl implements UserActivityTimeService {
 
         log.info("Get UserActivityTime for user with id: {} for activity with id: {}", user.getId(), activity.getId());
         UserActivityTime time = timeRepository.findByActivityIdAndUserId(activity.getId(), user.getId())
-                .orElseThrow(() -> new EntityNotFoundException("Activity is not found!"));
+                .orElseThrow(() -> new EntityNotFoundException("User activity time is not found!"));
 
         String updatedDuration = Duration.parse(time.getDuration()).plus(sessionDuration).toString();
 
@@ -70,6 +70,11 @@ public class UserActivityTimeServiceImpl implements UserActivityTimeService {
     @Override
     public void delete(Long userId, Long activityId) {
         log.info("Delete UserActivityTime for user with id: {} and activity with id: {}", userId, activityId);
+        userRepository.findById(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User is not found"));
+        activityRepository.findById(activityId)
+                .orElseThrow(() -> new EntityNotFoundException("Activity is not found"));
+
         timeRepository.deleteByUserIdAndActivityId(userId, activityId);
     }
 }

@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@RestController
 @RequiredArgsConstructor
+@RestController
 public class CategoryController implements CategoryApi {
 
     private final CategoryService categoryService;

@@ -9,13 +9,14 @@ import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 @Data
-@NoArgsConstructor @AllArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @Embeddable
 public class UserActivityTimeKey implements Serializable {
 
     @Column(name = "user_id")
-    Long userId;
+    private Long userId;
 
     @Column(name = "activity_id")
-    Long activityId;
+    private Long activityId;
 }

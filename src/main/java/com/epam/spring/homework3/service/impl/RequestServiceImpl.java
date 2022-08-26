@@ -9,7 +9,7 @@ import com.epam.spring.homework3.repository.UserRepository;
 import com.epam.spring.homework3.service.RequestService;
 import com.epam.spring.homework3.repository.RequestRepository;
 import com.epam.spring.homework3.mapper.RequestMapper;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,8 +19,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
+@RequiredArgsConstructor
 @Service
-@AllArgsConstructor
 public class RequestServiceImpl implements RequestService {
 
     private final RequestRepository requestRepository;
@@ -66,6 +66,9 @@ public class RequestServiceImpl implements RequestService {
     @Override
     public List<RequestDTO> getAllUserRequests(Long id) {
         log.info("Get all user's requests with id: {}", id);
+        userRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("User is not found!"));
+
         return requestRepository.getAllRequestsByUserId(id)
                 .stream()
                 .map(RequestMapper.INSTANCE::mapRequestDTO)
@@ -95,6 +98,8 @@ public class RequestServiceImpl implements RequestService {
     @Override
     public void rejectRequest(Long id) {
         log.info("Reject request with id: {}", id);
+        requestRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Request is not found!"));
         requestRepository.updateRequestStatusById(Status.REJECTED, id);
     }
 
