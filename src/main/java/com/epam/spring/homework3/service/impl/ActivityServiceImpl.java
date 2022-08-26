@@ -1,9 +1,6 @@
 package com.epam.spring.homework3.service.impl;
 
 import com.epam.spring.homework3.model.DTO.ActivityDTO;
-import com.epam.spring.homework3.model.DTO.UserDTO;
-//import com.epam.spring.homework3.repository.TimeRepository;
-import com.epam.spring.homework3.repository.TimeRepository;
 import com.epam.spring.homework3.service.ActivityService;
 import com.epam.spring.homework3.exception.EntityNotFoundException;
 import com.epam.spring.homework3.mapper.ActivityMapper;

@@ -9,7 +9,8 @@ import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 @Data
-@NoArgsConstructor @AllArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @Embeddable
 public class UserActivityTimeKey implements Serializable {
 
