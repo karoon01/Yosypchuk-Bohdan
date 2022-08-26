@@ -14,7 +14,7 @@ import java.time.Duration;
 public class UserActivityTime {
 
     @EmbeddedId
-    UserActivityTimeKey id;
+    private UserActivityTimeKey id;
 
     @ManyToOne
     @MapsId("userId")
