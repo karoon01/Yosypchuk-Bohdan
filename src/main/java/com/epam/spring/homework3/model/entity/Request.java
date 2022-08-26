@@ -11,7 +11,8 @@ import java.util.Date;
 
 @Data
 @Builder
-@NoArgsConstructor @AllArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "request")
 public class Request {

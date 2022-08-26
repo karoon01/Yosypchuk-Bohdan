@@ -50,7 +50,7 @@ public class UserActivityTimeServiceImpl implements UserActivityTimeService {
 
         log.info("Get UserActivityTime for user with id: {} for activity with id: {}", user.getId(), activity.getId());
         UserActivityTime time = timeRepository.findByActivityIdAndUserId(activity.getId(), user.getId())
-                .orElseThrow(() -> new EntityNotFoundException("Activity is not found!"));
+                .orElseThrow(() -> new EntityNotFoundException("User activity time is not found!"));
 
         String updatedDuration = Duration.parse(time.getDuration()).plus(sessionDuration).toString();
 
@@ -67,8 +67,17 @@ public class UserActivityTimeServiceImpl implements UserActivityTimeService {
         return updatedTime;
     }
 
+    @Transactional
     @Override
     public void delete(Long userId, Long activityId) {
+        log.info("Get user by id: {}", userId);
+        userRepository.findById(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User is not found"));
+
+        log.info("Get activity by id: {}", activityId);
+        activityRepository.findById(activityId)
+                .orElseThrow(() -> new EntityNotFoundException("Activity is not found"));
+
         log.info("Delete UserActivityTime for user with id: {} and activity with id: {}", userId, activityId);
         timeRepository.deleteByUserIdAndActivityId(userId, activityId);
     }

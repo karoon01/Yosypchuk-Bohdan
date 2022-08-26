@@ -66,6 +66,9 @@ public class RequestServiceImpl implements RequestService {
     @Override
     public List<RequestDTO> getAllUserRequests(Long id) {
         log.info("Get all user's requests with id: {}", id);
+        userRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("User is not found!"));
+
         return requestRepository.getAllRequestsByUserId(id)
                 .stream()
                 .map(RequestMapper.INSTANCE::mapRequestDTO)
@@ -95,6 +98,8 @@ public class RequestServiceImpl implements RequestService {
     @Override
     public void rejectRequest(Long id) {
         log.info("Reject request with id: {}", id);
+        requestRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Request is not found!"));
         requestRepository.updateRequestStatusById(Status.REJECTED, id);
     }
 

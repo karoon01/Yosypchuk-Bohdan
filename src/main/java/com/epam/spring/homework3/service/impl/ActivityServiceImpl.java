@@ -1,9 +1,7 @@
 package com.epam.spring.homework3.service.impl;
 
+import com.epam.spring.homework3.exception.EntityAlreadyExistException;
 import com.epam.spring.homework3.model.DTO.ActivityDTO;
-import com.epam.spring.homework3.model.DTO.UserDTO;
-//import com.epam.spring.homework3.repository.TimeRepository;
-import com.epam.spring.homework3.repository.TimeRepository;
 import com.epam.spring.homework3.service.ActivityService;
 import com.epam.spring.homework3.exception.EntityNotFoundException;
 import com.epam.spring.homework3.mapper.ActivityMapper;
@@ -16,22 +14,30 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class ActivityServiceImpl implements ActivityService {
+
     private final ActivityRepository activityRepository;
 
     @Override
     public ActivityDTO createActivity(ActivityDTO activityDTO) {
-        log.info("Create activity with id: {}", activityDTO.getId());
-        Activity activity = ActivityMapper.INSTANCE.mapActivity(activityDTO);
+        String name = activityDTO.getName();
+        Optional<Activity> possibleActivity = activityRepository.findActivityByName(name);
 
+        if(possibleActivity.isPresent()) {
+            log.warn("Activity with name: \"{}\" is already exist", name);
+            throw new EntityAlreadyExistException("Activity is already exist!");
+        }
+        log.info("Create activity with name: {}", name);
+        Activity activity = ActivityMapper.INSTANCE.mapActivity(activityDTO);
         activityRepository.save(activity);
 
-        return ActivityMapper.INSTANCE.mapActivityDto(activity);
+        return activityDTO;
     }
 
     @Override
@@ -46,11 +52,19 @@ public class ActivityServiceImpl implements ActivityService {
     @Override
     public ActivityDTO updateActivity(Long id, ActivityDTO activityDTO) {
         log.info("Update activity with id: {}", id);
-        Activity activity = ActivityMapper.INSTANCE.mapActivity(activityDTO);
-        activity.setId(id);
-        activityRepository.save(activity);
+        Activity activity = activityRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Activity doesn't exist"));
 
-        return ActivityMapper.INSTANCE.mapActivityDto(activity);
+        Activity updatedActivity = Activity.builder()
+                .id(activity.getId())
+                .name(activityDTO.getName())
+                .description(activityDTO.getDescription())
+                .category(activity.getCategory())
+                .build();
+
+        activityRepository.save(updatedActivity);
+
+        return ActivityMapper.INSTANCE.mapActivityDto(updatedActivity);
     }
 
     @Transactional

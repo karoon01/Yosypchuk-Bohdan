@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@RestController
 @RequiredArgsConstructor
+@RestController
 public class ActivityController implements ActivityApi {
 
     private final ActivityService activityService;
 
     @Override
-    public ActivityDTO getActivity(@PathVariable Long id) {
+    public ActivityDTO getActivity(Long id) {
         return activityService.getActivity(id);
     }
 
@@ -27,17 +27,17 @@ public class ActivityController implements ActivityApi {
     }
 
     @Override
-    public ActivityDTO createActivity(@Valid @RequestBody ActivityDTO activityDTO) {
+    public ActivityDTO createActivity(ActivityDTO activityDTO) {
         return activityService.createActivity(activityDTO);
     }
 
     @Override
-    public ActivityDTO updateActivity(@PathVariable Long id, @Valid @RequestBody ActivityDTO activityDTO) {
+    public ActivityDTO updateActivity(Long id, ActivityDTO activityDTO) {
         return activityService.updateActivity(id, activityDTO);
     }
 
     @Override
-    public ResponseEntity<Void> deleteActivity(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteActivity(Long id) {
         activityService.deleteActivity(id);
         return ResponseEntity.noContent().build();
     }

@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
 @RequiredArgsConstructor
+@RestController
 public class RequestController implements RequestApi {
 
     private final RequestService requestService;
@@ -21,29 +21,29 @@ public class RequestController implements RequestApi {
     }
 
     @Override
-    public List<RequestDTO> getAllUsersRequests(@PathVariable Long id) {
+    public List<RequestDTO> getAllUsersRequests(Long id) {
         return requestService.getAllUserRequests(id);
     }
 
     @Override
-    public RequestDTO createRequest(@PathVariable Long userId, @PathVariable Long activityId) {
+    public RequestDTO createRequest(Long userId, Long activityId) {
         return requestService.createRequest(userId, activityId);
     }
 
     @Override
-    public ResponseEntity<Void> deleteRequest(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteRequest(Long id) {
         requestService.deleteRequest(id);
         return ResponseEntity.noContent().build();
     }
 
     @Override
-    public ResponseEntity<Void> approveRequest(@PathVariable Long id) {
+    public ResponseEntity<Void> approveRequest(Long id) {
         requestService.approveRequest(id);
         return ResponseEntity.noContent().build();
     }
 
     @Override
-    public ResponseEntity<Void> rejectRequest(@PathVariable Long id) {
+    public ResponseEntity<Void> rejectRequest(Long id) {
         requestService.rejectRequest(id);
         return ResponseEntity.noContent().build();
     }

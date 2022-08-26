@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@RestController
 @RequiredArgsConstructor
+@RestController
 public class CategoryController implements CategoryApi {
 
     private final CategoryService categoryService;
@@ -22,17 +22,17 @@ public class CategoryController implements CategoryApi {
     }
 
     @Override
-    public CategoryDTO getActivityCategory(@PathVariable String name) {
+    public CategoryDTO getActivityCategory(String name) {
         return categoryService.getCategory(name);
     }
 
     @Override
-    public CategoryDTO createCategory(@Valid @RequestBody CategoryDTO categoryDTO) {
+    public CategoryDTO createCategory(CategoryDTO categoryDTO) {
         return categoryService.createCategory(categoryDTO);
     }
 
     @Override
-    public ResponseEntity<Void> removeCategory(@PathVariable Long id) {
+    public ResponseEntity<Void> removeCategory(Long id) {
         categoryService.deleteCategory(id);
         return ResponseEntity.noContent().build();
     }
