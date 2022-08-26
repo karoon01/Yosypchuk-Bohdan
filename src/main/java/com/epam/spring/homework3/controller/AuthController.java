@@ -26,12 +26,12 @@ public class AuthController implements AuthApi {
     private final AuthenticationManager authenticationManager;
 
     @Override
-    public UserDTO register(@Valid @RequestBody UserDTO userDTO) {
+    public UserDTO register(UserDTO userDTO) {
         return userService.registerUser(userDTO);
     }
 
     @Override
-    public ResponseEntity<UserDTO> login(@Valid @RequestBody LoginRequestDTO request) {
+    public ResponseEntity<UserDTO> login(LoginRequestDTO request) {
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword());
         Authentication authentication = authenticationManager.authenticate(authenticationToken);
 

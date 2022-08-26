@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Api(tags = "User management API")
@@ -39,7 +40,7 @@ public interface UserApi {
             @ApiResponse(code = 200, message = "OK"),
             @ApiResponse(code = 404, message = "Not Found")
     })
-    UserDTO updateUser(@PathVariable Long id, @RequestBody UserDTO userDTO);
+    UserDTO updateUser(@PathVariable Long id, @RequestBody @Valid UserDTO userDTO);
 
     @ApiOperation("Delete user")
     @ResponseStatus(HttpStatus.OK)
@@ -57,5 +58,5 @@ public interface UserApi {
             @ApiResponse(code = 200, message = "OK"),
             @ApiResponse(code = 404, message = "Not Found")
     })
-    UserActivityTime markTime(@PathVariable Long userId, @PathVariable Long activityId, @RequestBody UserActivityTimeDTO timeDTO);
+    UserActivityTime markTime(@PathVariable Long userId, @PathVariable Long activityId, @RequestBody @Valid UserActivityTimeDTO timeDTO);
 }

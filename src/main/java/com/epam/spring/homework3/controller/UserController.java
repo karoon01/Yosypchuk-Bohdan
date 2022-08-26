@@ -25,23 +25,23 @@ public class UserController implements UserApi {
     }
 
     @Override
-    public UserDTO getUserById(@PathVariable Long id) {
+    public UserDTO getUserById(Long id) {
         return userService.getUser(id);
     }
 
     @Override
-    public UserDTO updateUser(@PathVariable Long id, @Valid @RequestBody UserDTO userDTO) {
+    public UserDTO updateUser(Long id,UserDTO userDTO) {
         return userService.updateUser(id, userDTO);
     }
 
     @Override
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteUser(Long id) {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
 
     @Override
-    public UserActivityTime markTime(@PathVariable Long userId, @PathVariable Long activityId, @Valid @RequestBody UserActivityTimeDTO timeDTO) {
+    public UserActivityTime markTime(Long userId, Long activityId, UserActivityTimeDTO timeDTO) {
         return timeService.markTime(userId, activityId, timeDTO);
     }
 }

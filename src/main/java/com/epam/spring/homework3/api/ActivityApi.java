@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Api(tags = "Activity management API")
@@ -39,7 +40,7 @@ public interface ActivityApi {
             @ApiResponse(code = 201, message = "Created"),
             @ApiResponse(code = 409, message = "Conflict")
     })
-    ActivityDTO createActivity(@RequestBody ActivityDTO activityDTO);
+    ActivityDTO createActivity(@RequestBody @Valid ActivityDTO activityDTO);
 
     @ApiOperation("Update activity")
     @ResponseStatus(HttpStatus.OK)
@@ -48,7 +49,7 @@ public interface ActivityApi {
             @ApiResponse(code = 200, message = "OK"),
             @ApiResponse(code = 404, message = "Not Found")
     })
-    ActivityDTO updateActivity(@PathVariable Long id, @RequestBody ActivityDTO activityDTO);
+    ActivityDTO updateActivity(@PathVariable Long id, @RequestBody @Valid ActivityDTO activityDTO);
 
     @ApiOperation("Delete activity")
     @ResponseStatus(HttpStatus.OK)
