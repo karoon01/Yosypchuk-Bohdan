@@ -10,21 +10,27 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @Api("Authentication and authorization management API")
 @RequestMapping("/api/v1/auth")
-@ApiResponses({
-        @ApiResponse(code = 404, message = "Not found"),
-        @ApiResponse(code = 500, message = "Internal Server Error")
-})
 public interface AuthApi {
 
     @ApiOperation("Register user")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/register")
-    UserDTO register(@RequestBody UserDTO userDTO);
+    @ApiResponses({
+            @ApiResponse(code = 201, message = "Created"),
+            @ApiResponse(code = 409, message = "Conflict")
+    })
+    UserDTO register(@RequestBody @Valid UserDTO userDTO);
 
     @ApiOperation("Sign in user")
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/login")
-    ResponseEntity<UserDTO> login(@RequestBody LoginRequestDTO request);
+    @ApiResponses({
+            @ApiResponse(code = 201, message = "Created"),
+            @ApiResponse(code = 404, message = "Not Found")
+    })
+    ResponseEntity<UserDTO> login(@RequestBody @Valid LoginRequestDTO request);
 }
