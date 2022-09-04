@@ -1,5 +1,6 @@
 package com.epam.spring.homework3.model.DTO;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.validation.constraints.Email;
@@ -7,6 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Data
+@Builder
 public class LoginRequestDTO {
     @NotBlank(message = "${email.not-blank}")
     @Email(message = "${email.valid}")

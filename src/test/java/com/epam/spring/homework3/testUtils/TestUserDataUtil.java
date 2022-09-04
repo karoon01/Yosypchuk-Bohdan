@@ -1,5 +1,6 @@
 package com.epam.spring.homework3.testUtils;
 
+import com.epam.spring.homework3.model.DTO.LoginRequestDTO;
 import com.epam.spring.homework3.model.DTO.UserDTO;
 import com.epam.spring.homework3.model.entity.Role;
 import com.epam.spring.homework3.model.entity.User;
@@ -50,6 +51,13 @@ public class TestUserDataUtil {
                 .email(MOCK_UPDATE_EMAIL)
                 .password(MOCK_UPDATE_PASSWORD)
                 .role(MOCK_ROLE)
+                .build();
+    }
+
+    public static LoginRequestDTO createLoginRequestDto() {
+        return LoginRequestDTO.builder()
+                .email(MOCK_EMAIL)
+                .password(MOCK_PASSWORD)
                 .build();
     }
 
